@@ -1,10 +1,12 @@
 {
-	"get": {
-		"markdown":	"markdown",
-		"textile":	"textile"
+	"markdown": {
+		"ext":	".md",
+		"get":	"markdown",
+		"root":	"markdown/"
 	},
-	"root": {
-		"markdown":	"markdown/",
-		"textile":	"textile/"
+	"textile": {
+		"ext":	".textile",
+		"get":	"textile",
+		"root":	"textile/"
 	}
 }

@@ -1,16 +1,31 @@
 jQuery(document).ready(function ($) {
 	$.getJSON('config.json', function (config) {
 		var $title = $('title').text('. . .');
-		var $target = $('#target');
+		var langs = ['markdown', 'textile'];
 
-		if ($.url().param(config.get.markdown) !== undefined) {
-			$.get(config.root.markdown + $.url().param(config.get.markdown) + '.md', function (data) {
-				$target.append(markdown.toHTML(data));
-				$title.text($('h1').first().text());
-			});
-		} else if ($.url().param(config.get.textile) !== undefined) {
-			$.get(config.root.textile + $.url().param(config.get.textile) + '.textile', function (data) {
-				$target.append(textile.parse(data));
+		for (var i = 0; i < langs.length; i++) {
+			var lang = langs[i];
+			var get = $.url().param(config[lang].get);
+
+			if (get === undefined) continue;
+			console.log(lang);
+
+			$.get(config[lang].root + get + config[lang].ext, function (data) {
+				var html, ext;
+				var matches = this.url.match(/.\w+$/);
+
+				if (matches !== null && matches.length === 1) ext = matches[0];
+
+				switch (ext) {
+					case config.markdown.ext:
+						html = markdown.toHTML(data);
+						break;
+					case config.textile.ext:
+						html = textile.parse(data);
+						break;
+				}
+
+				$('#html').append(html);
 				$title.text($('h1').first().text());
 			});
 		}
