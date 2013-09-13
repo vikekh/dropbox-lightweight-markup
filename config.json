@@ -1,0 +1,10 @@
+{
+	"get": {
+		"markdown":	"markdown",
+		"textile":	"textile"
+	},
+	"root": {
+		"markdown":	"markdown/",
+		"textile":	"textile/"
+	}
+}
