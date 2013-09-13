@@ -8,7 +8,6 @@ jQuery(document).ready(function ($) {
 			var get = $.url().param(config[lang].get);
 
 			if (get === undefined) continue;
-			console.log(lang);
 
 			$.get(config[lang].root + get + config[lang].ext, function (data) {
 				var html, ext;
